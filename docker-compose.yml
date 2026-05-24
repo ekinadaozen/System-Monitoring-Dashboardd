@@ -1,0 +1,36 @@
+services:
+  # ── PostgreSQL Database ──
+  postgres:
+    image: postgres:15
+    container_name: metrics_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-system_metrics_db}
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin123}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./sql/views.sql:/docker-entrypoint-initdb.d/02-views.sql
+
+  # ── Grafana Dashboard ──
+  grafana:
+    image: grafana/grafana:10.3.1
+    container_name: metrics_grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+  grafana_data:

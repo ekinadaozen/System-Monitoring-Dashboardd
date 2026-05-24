@@ -1,4 +1,4 @@
-#    📊 System Monitoring & Analytics Dashboard
+# 📊 System onitoring & Analytics Dashboard
 
 A real-time system monitoring application that collects local machine metrics (CPU, RAM, Disk, Network) and stores them in PostgreSQL for visualization in Grafana and analysis in Power BI.
 

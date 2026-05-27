@@ -5,7 +5,10 @@ Handles connection and data insertion for system metrics.
 """
 
 import psycopg2
-from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+try:
+    from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+except ModuleNotFoundError:
+    from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 
 
 def get_connection():

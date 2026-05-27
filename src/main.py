@@ -8,9 +8,14 @@ and stores them in PostgreSQL.
 import schedule
 import time
 import logging
-from src.collector import collect_metrics
-from src.database import insert_metrics
-from src.config import COLLECTION_INTERVAL
+try:
+    from src.collector import collect_metrics
+    from src.database import insert_metrics
+    from src.config import COLLECTION_INTERVAL
+except ModuleNotFoundError:
+    from collector import collect_metrics
+    from database import insert_metrics
+    from config import COLLECTION_INTERVAL
 
 # ── Logging Setup ──
 logging.basicConfig(

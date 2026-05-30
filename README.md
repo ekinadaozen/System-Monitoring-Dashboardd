@@ -1,4 +1,4 @@
-# 📊 System onitoring & Analytics Dashboard
+#  System Monitoring & Analytics Dashboard
 
 A real-time system monitoring application that collects local machine metrics (CPU, RAM, Disk, Network) and stores them in PostgreSQL for visualization in Grafana and analysis in Power BI.
 
@@ -6,7 +6,7 @@ Built as a portfolio project demonstrating **Python**, **SQL**, **data collectio
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 | Category       | Technology                          |
 | -------------- | ----------------------------------- |
@@ -19,30 +19,30 @@ Built as a portfolio project demonstrating **Python**, **SQL**, **data collectio
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                     Local Machine                            │
 │                                                              │
-│   ┌──────────────┐     ┌──────────────┐     ┌────────────┐  │
-│   │   Python      │────▶│  PostgreSQL   │◀────│  Grafana   │  │
-│   │   Collector   │     │  (Docker)     │     │  (Docker)  │  │
-│   │   (psutil)    │     │              │     │  :3000     │  │
-│   └──────────────┘     └──────────────┘     └────────────┘  │
+│   ┌──────────────┐     ┌──────────────┐     ┌────────────┐   │
+│   │   Python     │───▶│  PostgreSQL   │◀───│  Grafana   │   │
+│   │   Collector  │     │  (Docker)    │     │  (Docker)  │   │
+│   │   (psutil)   │     │              │     │  :3000     │   │
+│   └──────────────┘     └──────────────┘     └────────────┘   │
 │         │                     │                              │
 │         │ Collects            │ SQL Views                    │
 │         │ every 5s            ▼                              │
 │         ▼              ┌──────────────┐                      │
-│   CPU, RAM, Disk       │  Power BI     │                     │
-│   Network stats        │  (Optional)   │                     │
+│   CPU, RAM, Disk       │  Power BI    │                      │
+│   Network stats        │  (Optional)  │                      │
 │                        └──────────────┘                      │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 system-monitoring-dashboard/
@@ -75,11 +75,6 @@ system-monitoring-dashboard/
     ├── architecture.md         # System architecture details
     ├── setup.md                # Complete setup instructions
     └── progress_log.md         # Development progress log
-```
-
----
-
-## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -87,61 +82,7 @@ system-monitoring-dashboard/
 - Docker & Docker Compose
 - Git
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/system-monitoring-dashboard.git
-cd system-monitoring-dashboard
-```
-
-### 2. Configure Environment
-
-```bash
-cp .env.example .env
-# Edit .env if you want to change defaults
-```
-
-### 3. Start Docker Services
-
-```bash
-docker-compose up -d
-```
-
-This starts:
-- **PostgreSQL** on port `5432`
-- **Grafana** on port `3000`
-
-### 4. Install Python Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Run the Collector
-
-```bash
-python -m src.main
-```
-
-You should see output like:
-
-```
-2026-05-23 14:00:00  INFO      ==================================================
-2026-05-23 14:00:00  INFO      System Monitoring Collector Started
-2026-05-23 14:00:00  INFO      Collection interval: 5 seconds
-2026-05-23 14:00:00  INFO      ==================================================
-2026-05-23 14:00:01  INFO      CPU: 12.3%  |  RAM: 45.6%  |  Disk: 62.1%  |  Net Sent: 1.2 GB  |  Net Recv: 3.4 GB
-```
-
-### 6. Open Grafana
-
-1. Navigate to [http://localhost:3000](http://localhost:3000)
-2. Login with `admin` / `admin`
-3. The **System Metrics Dashboard** is pre-loaded automatically
-
----
-
-## 📊 Grafana Dashboard
+## Grafana Dashboard
 
 The pre-configured dashboard includes:
 
@@ -155,9 +96,9 @@ The pre-configured dashboard includes:
 
 The dashboard auto-refreshes every **5 seconds**.
 
----
 
-## 📈 Power BI Integration
+
+##  Power BI Integration
 
 SQL views are pre-created for Power BI connectivity:
 
@@ -167,13 +108,6 @@ SQL views are pre-created for Power BI connectivity:
 | `daily_summary`   | Daily aggregates for exec reporting  |
 | `latest_metrics`  | Most recent system reading           |
 
-**To connect Power BI:**
-1. Open Power BI Desktop
-2. Get Data → PostgreSQL Database
-3. Server: `localhost`, Database: `system_metrics_db`
-4. Select the views above
-
----
 
 ## 🗄️ Database
 
@@ -189,40 +123,11 @@ SQL views are pre-created for Power BI connectivity:
 | `network_sent`     | BIGINT    | Cumulative bytes sent          |
 | `network_received` | BIGINT    | Cumulative bytes received      |
 
----
 
-## 🖼️ Screenshots
 
-### Grafana Dashboard
-![Grafana Dashboard](screenshots/grafana_dashboard.png)
 
-### Collector Terminal Output
-![Terminal Output](screenshots/terminal_output.png)
 
-### Database Query Results
-![Database Query](screenshots/database_query.png)
-
----
-
-## 🐳 Docker Details
-
-```bash
-# Start all services
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
-
-# Stop and remove volumes (reset data)
-docker-compose down -v
-```
-
----
-
-## 🔮 Future Improvements
+## Future Improvements
 
 - [ ] Add alerting rules in Grafana (e.g., CPU > 90%)
 - [ ] Add per-process CPU/RAM tracking
@@ -233,7 +138,7 @@ docker-compose down -v
 
 ---
 
-## 💡 Skills Demonstrated
+##  Skills Demonstrated
 
 - **Python**: Data collection, scheduling, database interaction
 - **SQL**: Schema design, aggregation views, indexing
@@ -243,16 +148,3 @@ docker-compose down -v
 - **DevOps**: Docker Compose, environment configuration
 - **Software Engineering**: Modular code, logging, error handling
 
----
-
-## 📄 Documentation
-
-- [Architecture](docs/architecture.md) — System design and data flow
-- [Setup Guide](docs/setup.md) — Detailed setup instructions
-- [Progress Log](docs/progress_log.md) — Development progress
-
----
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
